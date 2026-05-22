@@ -31,13 +31,11 @@ struct Stack {
     }
 
     // Xoa phan tu top 
-    T pop() {
+    void pop() {
         if (empty()) {
             throw out_of_range("Khong co phan tu nao trong stack!"); // Stack rong -> khong pop duoc
         }
-        T poppedValue = data[topIndex];
         topIndex--; // Pop khoi stack -> giam topindex di 1
-        return poppedValue;
     }
 
     // Lay phan tu o top
