@@ -50,7 +50,7 @@ struct LinkedList {
             tail->next = newNode;
             tail = newNode;
         }
-        _size++; // Moi lan chen cong them 1 vao size cua danh sach
+        _size++;
     }
 
     // Chen node vao vi tri index 
@@ -165,10 +165,9 @@ struct LinkedList {
     void printForward() const {
         Node<T>* curr = head;
         while (curr != nullptr) {
-            cout << curr->data << " -> ";
+            cout << curr->data << endl;
             curr = curr->next;
         }
-        cout << "NULL\n";
     }
 
     // In ra danh sach tu duoi len tren
