@@ -28,7 +28,7 @@ struct Queue {
     // Them phan tu vao cuoi hang
     void enqueue(const T& item) {
         if (_size == capacity) {
-            throw overflow_error("Queue da day!"); // Queue da day -> khong the enqueue them
+            throw overflow_error("Hang doi da day!"); // Queue da day -> khong the enqueue them
         }
         rearIndex = (rearIndex + 1) % capacity; // Tan dung lai khoang trong trong queue khi xoa phan tu dau mang
         data[rearIndex] = item;
@@ -38,7 +38,7 @@ struct Queue {
     // Xoa phan tu o dau hang
     void dequeue() {
         if (empty()) {
-            throw out_of_range("Queue dang rong, khong the dequeue!"); // Queue rong -> khong the dequeue
+            throw out_of_range("Hang doi dang rong, khong the xoa!"); // Queue rong -> khong the dequeue
         }
         T frontValue = data[frontIndex];
         // Tang index toi phan tu tiep theo, neu den cuoi mang thi quay lai dau mang

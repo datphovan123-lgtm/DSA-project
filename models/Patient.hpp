@@ -69,4 +69,16 @@ struct Patient {
     }
 };
 
+ostream& operator<<(ostream& os, const Patient& patient) {
+    os << "-------------------------\n";
+    os << "Ma benh nhan: " << patient.id << endl;
+    os << "Ho ten: " << patient.name << endl;
+    os << "Tuoi: " << patient.age << endl;
+    os << "Khoa dieu tri: " << patient.department << endl;
+    os << "Muc do benh: " << patient.severityLevel << endl;
+    os << "Bao hiem: " << (patient.hasInsurance ? "Co" : "Khong") << endl;
+    os << "Vien phi: " << patient.treatmentFee << endl;
+    return os;
+}
+
 #endif
