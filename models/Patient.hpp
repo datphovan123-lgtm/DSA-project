@@ -42,6 +42,18 @@ struct Patient {
         this->treatmentFee = treatmentFee;
     }
 
+    bool operator<(const Patient& other) const {
+        return id < other.id;
+    }
+
+    bool operator>(const Patient& other) const {
+        return id > other.id;
+    }
+
+    bool operator==(const Patient& other) const {
+        return id == other.id;
+    }
+
     void display() const {
         cout << "Ma benh nhan: " << id << endl;
         cout << "Ho ten: " << name << endl;
