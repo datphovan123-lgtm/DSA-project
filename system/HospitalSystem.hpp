@@ -3,70 +3,40 @@
 
 #include <iostream>
 #include <string>
-#include "../models/Patient.hpp"
-#include "../lib/LinkedList.hpp"
+
+#include "PatientService.hpp"
+#include "VisitService.hpp"
+
 using namespace std;
 
 struct HospitalSystem {
 private:
-    LinkedList<Patient> patients;
-
+    PatientService patientService;
+    VisitService visitService;
 public:
-    // Them benh nhan moi vao he thong
-    void addPatient() {
-        string id, name, department;
-        int age, severityLevel;
-        int insuranceChoice;
-        double treatmentFee;
-
-        cout << "Nhap ma benh nhan: ";
-        cin >> id;
-
-        cin.ignore();
-
-        cout << "Nhap ho ten benh nhan: ";
-        getline(cin, name);
-
-        cout << "Nhap tuoi: ";
-        cin >> age;
-
-        cin.ignore();
-
-        cout << "Nhap khoa dieu tri: ";
-        getline(cin, department);
-
-        cout << "Nhap muc do benh 1-4: ";
-        cin >> severityLevel;
-
-        cout << "Co bao hiem khong? 1.Co  0.Khong: ";
-        cin >> insuranceChoice;
-
-        cout << "Nhap vien phi ban dau: ";
-        cin >> treatmentFee;
-
-        Patient newPatient(
-            id,
-            name,
-            age,
-            department,
-            severityLevel,
-            insuranceChoice == 1,
-            treatmentFee
-        );
-
-        patients.insertBack(newPatient);
-
-        cout << "\nThem benh nhan thanh cong!\n";
+    // Dang ky kham
+    void registerNormalVisit() {
+        visitService.registerNormalVisit();
     }
 
-    // Hien thi danh sach benh nhan
-    void displayPatients() const {
-        if (patients.size() == 0) {
-            cout << "Danh sach benh nhan dang rong.\n";
-            return;
-        }
+    // Goi benh nhan kham tiep theo
+    void callNextNormalVisit() {
+        visitService.callNextNormalVisit();
+    }
 
-        patients.printForward();
+    // Xem benh nhan dau hang doi kham thuong
+    void viewNextNormalVisit() const {
+        visitService.viewNextNormalVisit();
+    }
+
+    // Hien thi so luong benh nhan kham thuong dang cho
+    void displayNormalQueueSize() const {
+        visitService.displayNormalQueueSize();
+    }
+
+    // Hien thi danh sach benh nhan trong he thong
+    void displayPatients() const {
+        patientService.displayPatients();
     }
 };
 

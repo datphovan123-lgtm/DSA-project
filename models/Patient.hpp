@@ -51,18 +51,22 @@ struct Patient {
         cout << "Bao hiem: " << (hasInsurance ? "Co" : "Khong") << endl;
         cout << "Vien phi: " << treatmentFee << endl;
     }
-};
 
-ostream& operator<<(ostream& os, const Patient& patient) {
-    os << "\n-------------------------\n";
-    os << "Ma benh nhan: " << patient.id << endl;
-    os << "Ho ten: " << patient.name << endl;
-    os << "Tuoi: " << patient.age << endl;
-    os << "Khoa: " << patient.department << endl;
-    os << "Muc do benh: " << patient.severityLevel << endl;
-    os << "Bao hiem: " << (patient.hasInsurance ? "Co" : "Khong") << endl;
-    os << "Vien phi: " << patient.treatmentFee << endl;
-    return os;
-}
+    bool operator>(const Patient& other) const {
+        return severityLevel > other.severityLevel;
+    }
+
+    bool operator<(const Patient& other) const {
+        return severityLevel < other.severityLevel;
+    }
+
+    bool operator>=(const Patient& other) const {
+        return severityLevel >= other.severityLevel;
+    }
+
+    bool operator<=(const Patient& other) const {
+        return severityLevel <= other.severityLevel;
+    }
+};
 
 #endif
