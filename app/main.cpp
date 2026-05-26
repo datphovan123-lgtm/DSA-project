@@ -1,13 +1,5 @@
 #include <iostream>
 #include "menu.hpp"
-#include "Algorithms.hpp"
-#include "AVL.hpp"
-#include "BST.hpp"
-#include "HashTable.hpp"
-#include "LinkedList.hpp"
-#include "PriorityQueue.hpp"
-#include "Queue.hpp"
-#include "Stack.hpp"
 using namespace std;
 
 int main(){

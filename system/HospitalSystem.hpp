@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "PatientHashTable.hpp"
 #include "../models/Patient.hpp"
 #include "../lib/LinkedList.hpp"
 using namespace std;
@@ -10,6 +11,7 @@ using namespace std;
 struct HospitalSystem {
 private:
     LinkedList<Patient> patients;
+    PatientHashTable patientTable;
 
 public:
     // Them benh nhan moi vao he thong
@@ -55,6 +57,7 @@ public:
         );
 
         patients.insertBack(newPatient);
+        patientTable.insert(newPatient);
 
         cout << "\nThem benh nhan thanh cong!\n";
     }

@@ -16,11 +16,11 @@ void pauseScreen() {
 // In menu chinh
 void showMenu() {
     cout << "========== HOSPITAL MANAGEMENT ==========\n";
-    cout << "1. Add patient\n";
-    cout << "2. Search patient\n";
-    cout << "3. Remove patient\n";
-    cout << "4. Show all patients\n";
-    cout << "0. Exit\n";
+    cout << "1. Them benh nhan\n";
+    cout << "2. Tim benh nhan\n";
+    cout << "3. Xoa benh nhan\n";
+    cout << "4. Hien thi tat ca benh nhan\n";
+    cout << "0. Thoat\n";
     cout << "Choose: ";
 }
 
