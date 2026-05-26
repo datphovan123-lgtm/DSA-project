@@ -64,21 +64,6 @@ struct Patient {
         cout << "Vien phi: " << treatmentFee << endl;
     }
 
-    bool operator>(const Patient& other) const {
-        return severityLevel > other.severityLevel;
-    }
-
-    bool operator<(const Patient& other) const {
-        return severityLevel < other.severityLevel;
-    }
-
-    bool operator>=(const Patient& other) const {
-        return severityLevel >= other.severityLevel;
-    }
-
-    bool operator<=(const Patient& other) const {
-        return severityLevel <= other.severityLevel;
-    }
 };
 
 #endif
