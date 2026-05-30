@@ -2,129 +2,131 @@
 #define PATIENTSERVICE_HPP
 
 #include <iostream>
+#include <string>
+
 #include "PatientHashTable.hpp"
 #include "EmergencyService.hpp"
 #include "../models/Models.hpp"
 #include "../lib/LinkedList.hpp"
-#include "../lib/Algorithms.hpp"
 
 using namespace std;
 
-struct PatientService
-{
+struct PatientService {
 private:
     PatientHashTable patientTable;
     EmergencyService emergencyQueue;
+    long long nextPatientID;
 
 public:
-    // Them benh nhan vao he thong quan ly chinh thuc
-    void addPatient()
-    {
-        // lam 1 ham thong tin trong file txt roi lay
+    // Khoi tao ma benh nhan dau tien
+    PatientService() {
+        nextPatientID = 25120201;
+    }
+
+    // Tao ma benh nhan tu dong
+    string generatePatientID() {
+        string id = to_string(nextPatientID);
+        nextPatientID++;
+        return id;
+    }
+
+    // Lay ma benh nhan tiep theo de luu vao file
+    long long getNextPatientID() const {
+        return nextPatientID;
+    }
+
+    // Gan ma benh nhan tiep theo khi doc tu file
+    void setNextPatientID(long long id) {
+        nextPatientID = id;
+    }
+
+    // Them benh nhan bang cach nhap tu ban phim
+    void addPatient() {
         Patient newPatient;
+
+        newPatient.id = generatePatientID();
+
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
+
         cout << "Tuoi: ";
         cin >> newPatient.age;
         cin.ignore();
+
         cout << "Khoa: ";
         getline(cin, newPatient.department);
-        cout << "Muc do benh (1-4): ";
-        cin >> newPatient.severityLevel;
-        cin.ignore();
+
+        do {
+            cout << "Muc do benh:\n";
+            cout << "1. Nhe\n";
+            cout << "2. Binh thuong\n";
+            cout << "3. Nang\n";
+            cout << "4. Cap cuu\n";
+            cout << "Chon: ";
+            cin >> newPatient.severityLevel;
+
+            if (newPatient.severityLevel < 1 || newPatient.severityLevel > 4) {
+                cout << "Muc do khong hop le. Vui long nhap lai!\n";
+            }
+
+        } while (newPatient.severityLevel < 1 || newPatient.severityLevel > 4);
+
         cout << "Bao hiem (1. Co / 0. Khong): ";
         cin >> newPatient.hasInsurance;
         cin.ignore();
+
         cout << "Vien phi: ";
         cin >> newPatient.treatmentFee;
         cin.ignore();
-        if (newPatient.severityLevel >= 3)
-        {
+
+        patientTable.insert(newPatient);
+
+        if (newPatient.severityLevel >= 3) {
             emergencyQueue.addEmergencyPatient(newPatient);
         }
-        patientTable.insert(newPatient);
+
+        cout << "\nThem benh nhan thanh cong!\n";
     }
 
     // Them benh nhan tu file txt
-    void addPatientFromFile(const Patient &patient)
-    {
-        // Them vao bang bam
+    void addPatientFromFile(const Patient& patient) {
         patientTable.insert(patient);
 
-        // Neu muc do benh >= 3
-        // thi dua vao hang doi uu tien
-        if (patient.severityLevel >= 3)
-        {
+        if (patient.severityLevel >= 3) {
             emergencyQueue.addEmergencyPatient(patient);
         }
     }
 
-    // Hien thi toan bo benh nhan trong he thong
-    void displayPatients() const
-    {
+    // Lay toan bo benh nhan ra mang
+    int getAllPatients(Patient arr[]) const {
+        return patientTable.getAllPatients(arr);
+    }
+
+    // Hien thi toan bo benh nhan
+    void displayPatients() const {
         int n = patientTable.size();
 
-        if (n == 0)
-        {
-            cout << "\nKhong co benh nhan nao.\n";
+        if (n == 0) {
+            cout << "\nKhong co benh nhan nao trong he thong.\n";
             return;
         }
 
-        Patient *patients = new Patient[n];
+        Patient* patients = new Patient[n];
+
         int count = patientTable.getAllPatients(patients);
 
-        int choice;
+        cout << "\n========== DANH SACH BENH NHAN ==========\n";
 
-        cout << "\n===== CHON KIEU SAP XEP =====\n";
-        cout << "1. Theo ma benh nhan\n";
-        cout << "2. Theo ten benh nhan\n";
-        cout << "3. Theo cap do benh\n";
-        cout << "Chon: ";
-        cin >> choice;
-        cin.ignore();
-
-        switch (choice)
-        {
-        case 1:
-            quickSort(patients, 0, count - 1, [](const Patient &a, const Patient &b)
-                      { return a.id < b.id; });
-            break;
-
-        case 2:
-            quickSort(patients, 0, count - 1, [](const Patient &a, const Patient &b)
-                      { return a.name < b.name; });
-            break;
-
-        case 3:
-            quickSort(patients, 0, count - 1, [](const Patient &a, const Patient &b)
-                      { return a.severityLevel < b.severityLevel; });
-            break;
-
-        default:
-            cout << "Lua chon khong hop le!\n";
-            delete[] patients;
-            return;
-        }
-
-        cout << "\n===== DANH SACH BENH NHAN =====\n";
-
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < count; i++) {
+            cout << "\nBenh nhan thu " << i + 1 << endl;
             patients[i].display();
-            cout << endl;
         }
 
         delete[] patients;
     }
 
-    int getAllPatients(Patient arr[]) const
-    {
-        return patientTable.getAllPatients(arr);
-    }
-
-    // Tra ve so luong benh nhan trong he thong
-    int size() const
-    {
+    // Tra ve so luong benh nhan
+    int size() const {
         return patientTable.size();
     }
 };
