@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 #include "PatientHashTable.hpp"
 #include "EmergencyService.hpp"
@@ -53,8 +54,11 @@ public:
 
         cout << "Ma benh nhan: " << newPatient.id << endl;
 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
+        cin.ignore();
 
         cout << "Tuoi: ";
         cin >> newPatient.age;
