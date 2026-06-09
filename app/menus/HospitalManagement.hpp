@@ -13,8 +13,6 @@ void showHospitalMenu(HospitalSystem &hospital)
 
     do
     {
-        clearScreen();
-
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│      HOSPITAL MANAGEMENT SYSTEM       │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -24,7 +22,7 @@ void showHospitalMenu(HospitalSystem &hospital)
         cout << "│ 4. Hien thi tat ca benh nhan          │\n";
         cout << "│ 0. Quay lai menu chinh                │\n";
         cout << "└───────────────────────────────────────┘\n";
-        cout << "Choose: ";
+        cout << "Nhap lua chon: ";
 
         cin >> choice;
         clearScreen();
