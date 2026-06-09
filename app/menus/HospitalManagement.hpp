@@ -55,6 +55,7 @@ void showHospitalMenu(HospitalSystem &hospital)
             cout << "Lua chon khong hop le.\n";
             break;
         }
+        clearScreen();
     }while(choice != 0);
 }
 

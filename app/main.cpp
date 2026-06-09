@@ -25,7 +25,7 @@ int main()
     int c;
 
     do{
-        clearScreen();
+        
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│            BENH VIEN POKER            │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -36,7 +36,9 @@ int main()
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
         cin >> c;
-        clearScreen();
+        cin.ignore();
+
+        system("cls");
 
         switch (c)
         {
