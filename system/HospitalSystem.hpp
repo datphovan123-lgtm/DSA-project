@@ -5,62 +5,96 @@
 #include <string>
 
 #include "PatientService.hpp"
+#include "EmergencyService.hpp"
 #include "VisitService.hpp"
 
 using namespace std;
 
-struct HospitalSystem {
+struct HospitalSystem
+{
 private:
     PatientService patientService;
     VisitService visitService;
+    EmergencyService emergencyService;
 
 public:
     // Dang ky kham
-    void registerNormalVisit() {
+    void registerNormalVisit()
+    {
         visitService.registerNormalVisit();
     }
 
     // Goi benh nhan kham tiep theo
-    void callNextNormalVisit() {
+    void callNextNormalVisit()
+    {
         visitService.callNextNormalVisit();
     }
 
     // Xem benh nhan dau hang doi kham
-    void viewNextNormalVisit() const {
+    void viewNextNormalVisit() const
+    {
         visitService.viewNextNormalVisit();
     }
 
     // Hien thi so luong benh nhan kham hien tai
-    void displayNormalQueueSize() const {
+    void displayNormalQueueSize() const
+    {
         visitService.displayNormalQueueSize();
     }
 
     // Them benh nhan moi
-    void addPatient() {
+    void addPatient()
+    {
         patientService.addPatient();
     }
 
     // Tim benh nhan theo ma benh nhan
-    void findPatientByID() {
+    void findPatientByID()
+    {
         patientService.searchPatientById();
     }
 
     // Xoa benh nhan theo ma benh nhan
-    void deletePatient() {
+    void deletePatient()
+    {
         patientService.removePatient();
     }
 
+    // Xu ly benh nhan cap cuu uu tien cao nhat
+
+    void processEmergencyPatient()
+    {
+        emergencyService.processEmergencyPatient();
+    }
+
+    // Xem benh nhan cap cuu uu tien cao nhat
+
+    void viewTopEmergencyPatient() const
+    {
+        emergencyService.viewTopEmergencyPatient();
+    }
+
+    // Xem so luong benh nhan cap cuu dang cho
+
+    void displayEmergencyQueueSize() const
+    {
+        emergencyService.displayEmergencyQueueSize();
+    }
+
     // Hien thi danh sach benh nhan
-    void displayPatients() const {
+    void displayPatients() const
+    {
         patientService.displayPatients();
     }
 
     // Lay PatientService de FileService load/save
-    PatientService& getPatientService() {
+    PatientService &getPatientService()
+    {
         return patientService;
     }
 
-    const PatientService& getPatientService() const {
+    const PatientService &getPatientService() const
+    {
         return patientService;
     }
 };
