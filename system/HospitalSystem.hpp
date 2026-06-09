@@ -55,6 +55,11 @@ public:
     void displayPatients() const {
         patientService.displayPatients();
     }
+
+    // Tim benh nhan theo ma ID
+    void searchPatientById() const {
+        patientService.searchPatientById();
+    }
 };
 
 #endif
