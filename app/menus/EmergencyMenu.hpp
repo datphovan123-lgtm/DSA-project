@@ -53,7 +53,7 @@ void showEmergencyMenu(HospitalSystem &hospital)
             pauseScreen();
             break;
         }
-
+        clearScreen();
     } while (choice != 0);
 }
 

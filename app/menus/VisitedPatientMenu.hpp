@@ -59,6 +59,7 @@ void showVisitedPatientMenu(HospitalSystem &hospital)
             pauseScreen();
             break;
         }
+        clearScreen();
 
     } while (choice != 0);
 }

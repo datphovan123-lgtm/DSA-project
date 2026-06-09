@@ -55,21 +55,6 @@ public:
         patientService.displayPatients();
     }
 
-    // Xu ly benh nhan cap cuu uu tien cao nhat
-    void processEmergencyPatient() {
-        patientService.processEmergencyPatient();
-    }
-
-    // Xem benh nhan cap cuu uu tien cao nhat
-    void viewTopEmergencyPatient() const {
-        patientService.viewTopEmergencyPatient();
-    }
-
-    // Xem so luong benh nhan cap cuu dang cho
-    void displayEmergencyQueueSize() const {
-        patientService.displayEmergencyQueueSize();
-    }
-
     // Lay PatientService de FileService load/save
     PatientService& getPatientService() {
         return patientService;

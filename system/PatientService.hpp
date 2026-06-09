@@ -8,6 +8,7 @@
 #include "PatientHashTable.hpp"
 #include "EmergencyService.hpp"
 #include "../models/Models.hpp"
+#include "../lib/LinkedList.hpp"
 
 using namespace std;
 
@@ -57,6 +58,7 @@ public:
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         cout << "Ten benh nhan: ";
+        cin.ignore();
         getline(cin, newPatient.name);
         cin.ignore();
 
@@ -187,24 +189,6 @@ public:
         {
             cout << "\nKhong tim thay benh nhan!\n";
         }
-    }
-
-    // Xu ly benh nhan cap cuu uu tien cao nhat
-    void processEmergencyPatient()
-    {
-        emergencyQueue.processEmergencyPatient();
-    }
-
-    // Xem benh nhan cap cuu uu tien cao nhat
-    void viewTopEmergencyPatient() const
-    {
-        emergencyQueue.viewTopEmergencyPatient();
-    }
-
-    // Hien thi so luong benh nhan cap cuu dang cho
-    void displayEmergencyQueueSize() const
-    {
-        emergencyQueue.displayEmergencyQueueSize();
     }
 
     // Tra ve so luong benh nhan

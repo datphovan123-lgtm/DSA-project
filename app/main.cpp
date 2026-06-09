@@ -27,6 +27,10 @@ void showMainMenu(HospitalSystem &hospital)
         cout << "│ 0. Thoat                              │\n";
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
+        cin >> choice;
+        cin.ignore();
+
+        system("cls");
 
         cin >> choice;
 

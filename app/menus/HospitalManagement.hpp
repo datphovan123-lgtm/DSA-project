@@ -59,8 +59,8 @@ void showHospitalMenu(HospitalSystem &hospital)
             pauseScreen();
             break;
         }
-
-    } while (choice != 0);
+        clearScreen();
+    }while(choice != 0);
 }
 
 #endif
