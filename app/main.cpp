@@ -34,6 +34,7 @@ int main()
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
         cin >> c;
+        cin.ignore();
 
         switch (c)
         {

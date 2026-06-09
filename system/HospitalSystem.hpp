@@ -6,7 +6,6 @@
 
 #include "PatientService.hpp"
 #include "VisitService.hpp"
-#include "EmergencyService.hpp"
 
 using namespace std;
 
@@ -14,7 +13,6 @@ struct HospitalSystem {
 private:
     PatientService patientService;
     VisitService visitService;
-    EmergencyService emergencyService;
 
 public:
     // Dang ky kham
@@ -37,24 +35,9 @@ public:
         visitService.displayNormalQueueSize();
     }
 
-    // Them benh nhan moi vao he thong
+    // Them benh nhan moi
     void addPatient() {
         patientService.addPatient();
-    }
-
-    // Xu ly benh nhan cap cuu co do uu tien cao nhat
-    void processEmergencyPatient() {
-        emergencyService.processEmergencyPatient();
-    }
-
-    // Xem benh nhan cap cuu uu tien cao nhat
-    void viewTopEmergencyPatient() const {
-        emergencyService.viewTopEmergencyPatient();
-    }
-
-    // Xem so luong benh nhan cap cuu dang cho
-    void displayEmergencyQueueSize() const {
-        emergencyService.displayEmergencyQueueSize();
     }
 
     // Tim benh nhan theo ma benh nhan
@@ -67,22 +50,31 @@ public:
         patientService.removePatient();
     }
 
-    // Hien thi danh sach benh nhan trong he thong
+    // Hien thi danh sach benh nhan
     void displayPatients() const {
         patientService.displayPatients();
     }
 
-    // Tim benh nhan theo ma ID
-    void searchPatientById() const {
-        patientService.searchPatientById();
+    // Xu ly benh nhan cap cuu uu tien cao nhat
+    void processEmergencyPatient() {
+        patientService.processEmergencyPatient();
     }
 
-    // Lay PatientService de FileService co the load/save file
+    // Xem benh nhan cap cuu uu tien cao nhat
+    void viewTopEmergencyPatient() const {
+        patientService.viewTopEmergencyPatient();
+    }
+
+    // Xem so luong benh nhan cap cuu dang cho
+    void displayEmergencyQueueSize() const {
+        patientService.displayEmergencyQueueSize();
+    }
+
+    // Lay PatientService de FileService load/save
     PatientService& getPatientService() {
         return patientService;
     }
 
-    // Lay PatientService ban const de save file
     const PatientService& getPatientService() const {
         return patientService;
     }
