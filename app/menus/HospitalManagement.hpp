@@ -13,8 +13,6 @@ void showHospitalMenu(HospitalSystem &hospital)
 
     do
     {
-        clearScreen();
-
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│      HOSPITAL MANAGEMENT SYSTEM       │\n";
         cout << "├───────────────────────────────────────┤\n";

@@ -32,8 +32,6 @@ void showMainMenu(HospitalSystem &hospital)
 
         system("cls");
 
-        cin >> choice;
-
         switch (choice)
         {
         case 1:

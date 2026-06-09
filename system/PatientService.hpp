@@ -55,12 +55,10 @@ public:
 
         cout << "Ma benh nhan: " << newPatient.id << endl;
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore();
         cout << "Ten benh nhan: ";
-        cin.ignore();
         getline(cin, newPatient.name);
-        cin.ignore();
 
         cout << "Tuoi: ";
         cin >> newPatient.age;
