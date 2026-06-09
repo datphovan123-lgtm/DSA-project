@@ -16,7 +16,7 @@ public:
     // Khoi tao hang doi kham voi suc chua 100
     VisitService() : normalQueue(100) {}
 
-    // Dang ky benh nhan kham  vao Queue
+    // Dang ky benh nhan kham vao Queue
     void registerNormalVisit() {
         VisitPatient patient = inputVisitPatient();
 
@@ -25,7 +25,7 @@ public:
         cout << "\nDang ky kham thanh cong. Benh nhan da vao hang doi kham.\n";
     }
 
-    // Goi benh nhan kham   tiep theo va lay ra khoi Queue
+    // Goi benh nhan kham tiep theo va lay ra khoi Queue
     VisitPatient callNextNormalVisit() {
         if (normalQueue.empty()) {
             cout << "\nKhong co benh nhan nao trong hang doi kham.\n";
@@ -52,9 +52,9 @@ public:
         cout << normalQueue.front();
     }
 
-    // Hien thi so luong benh nhan dang cho kham  
+    // Hien thi so luong benh nhan dang cho kham
     void displayNormalQueueSize() const {
-        cout << "\nSo benh nhan dang cho kham  : " << normalQueue.size() << endl;
+        cout << "\nSo benh nhan dang cho kham: " << normalQueue.size() << endl;
     }
 
     // Kiem tra hang doi kham co rong khong
@@ -63,7 +63,7 @@ public:
     }
 
 private:
-    // Nhap thong tin dang ky kham  
+    // Nhap thong tin dang ky kham
     VisitPatient inputVisitPatient() {
         string visitId;
         string name;

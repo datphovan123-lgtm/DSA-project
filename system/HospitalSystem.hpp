@@ -15,6 +15,7 @@ private:
     PatientService patientService;
     VisitService visitService;
     EmergencyService emergencyService;
+
 public:
     // Dang ky kham
     void registerNormalVisit() {
@@ -26,7 +27,7 @@ public:
         visitService.callNextNormalVisit();
     }
 
-    // Xem benh nhan dau hang doi kham 
+    // Xem benh nhan dau hang doi kham
     void viewNextNormalVisit() const {
         visitService.viewNextNormalVisit();
     }
@@ -36,7 +37,20 @@ public:
         visitService.displayNormalQueueSize();
     }
 
-     // Xu ly benh nhan cap cuu co do uu tien cao nhat
+    // Them benh nhan moi vao he thong
+    void addPatient() {
+        Patient patient = patientService.inputPatient();
+
+        if (patientService.addPatientToSystem(patient)) {
+            if (patient.severityLevel >= 3) {
+                emergencyService.addEmergencyPatient(patient);
+            }
+
+            cout << "\nThem benh nhan thanh cong!\n";
+        }
+    }
+
+    // Xu ly benh nhan cap cuu co do uu tien cao nhat
     void processEmergencyPatient() {
         emergencyService.processEmergencyPatient();
     }
@@ -50,14 +64,6 @@ public:
     void displayEmergencyQueueSize() const {
         emergencyService.displayEmergencyQueueSize();
     }
-    
-    // Them benh nhan moi
-    void addPatient() {
-        patientService.addPatient();
-    }
-
-    // Tim benh nhan theo ma benh nhan
-    void findPatientByID() {
 
     // Hien thi danh sach benh nhan trong he thong
     void displayPatients() const {
@@ -67,6 +73,16 @@ public:
     // Tim benh nhan theo ma ID
     void searchPatientById() const {
         patientService.searchPatientById();
+    }
+
+    // Lay PatientService de FileService co the load/save file
+    PatientService& getPatientService() {
+        return patientService;
+    }
+
+    // Lay PatientService ban const de save file
+    const PatientService& getPatientService() const {
+        return patientService;
     }
 };
 

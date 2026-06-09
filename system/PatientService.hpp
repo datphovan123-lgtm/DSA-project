@@ -5,16 +5,13 @@
 #include <string>
 
 #include "PatientHashTable.hpp"
-#include "EmergencyService.hpp"
 #include "../models/Models.hpp"
-#include "../lib/LinkedList.hpp"
 
 using namespace std;
 
 struct PatientService {
 private:
     PatientHashTable patientTable;
-    EmergencyService emergencyQueue;
     long long nextPatientID;
 
 public:
@@ -40,11 +37,13 @@ public:
         nextPatientID = id;
     }
 
-    // Them benh nhan bang cach nhap tu ban phim
-    void addPatient() {
+    // Nhap thong tin benh nhan tu ban phim
+    Patient inputPatient() {
         Patient newPatient;
 
         newPatient.id = generatePatientID();
+
+        cin.ignore();
 
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
@@ -79,22 +78,26 @@ public:
         cin >> newPatient.treatmentFee;
         cin.ignore();
 
-        patientTable.insert(newPatient);
+        return newPatient;
+    }
 
-        if (newPatient.severityLevel >= 3) {
-            emergencyQueue.addEmergencyPatient(newPatient);
+    // Them benh nhan vao he thong bang object co san
+    bool addPatientToSystem(const Patient& patient) {
+        return patientTable.insert(patient);
+    }
+
+    // Them benh nhan bang cach nhap tu ban phim
+    void addPatient() {
+        Patient newPatient = inputPatient();
+
+        if (patientTable.insert(newPatient)) {
+            cout << "\nThem benh nhan thanh cong!\n";
         }
-
-        cout << "\nThem benh nhan thanh cong!\n";
     }
 
     // Them benh nhan tu file txt
     void addPatientFromFile(const Patient& patient) {
         patientTable.insert(patient);
-
-        if (patient.severityLevel >= 3) {
-            emergencyQueue.addEmergencyPatient(patient);
-        }
     }
 
     // Lay toan bo benh nhan ra mang
@@ -125,7 +128,7 @@ public:
         delete[] patients;
     }
 
-      // Tim benh nhan theo ma ID va tra ve true neu tim thay
+    // Tim benh nhan theo ma ID va tra ve true neu tim thay
     bool findPatientById(const string& id, Patient& result) const {
         return patientTable.findById(id, result);
     }

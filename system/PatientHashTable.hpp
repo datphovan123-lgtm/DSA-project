@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+
 #include "../lib/AVL.hpp"
 #include "../models/Patient.hpp"
 
@@ -58,19 +59,20 @@ public:
     }
 
     // Them benh nhan vao bang bam
-    void insert(const Patient& patient) {
+    bool insert(const Patient& patient) {
         int index = hashFunction(patient.id);
 
         Patient temp;
+
         if (findInAVL(table[index].root, patient.id, temp)) {
             cout << "Ma benh nhan da ton tai!\n";
-            return;
+            return false;
         }
 
         table[index].insert(patient);
         count++;
 
-        cout << "Da them benh nhan vao bucket " << index << endl;
+        return true;
     }
 
     // Tim benh nhan theo ma id, neu thay thi gan vao result
@@ -78,31 +80,6 @@ public:
         int index = hashFunction(id);
 
         return findInAVL(table[index].root, id, result);
-    }
-
-    // Tim va in thong tin co ban cua benh nhan theo ma id
-    void displayPatientById(const string& id) const {
-        Patient result;
-
-        if (!findById(id, result)) {
-            cout << "\nKhong tim thay benh nhan co ma: " << id << endl;
-            return;
-        }
-
-        cout << "\n===== THONG TIN BENH NHAN =====\n";
-        cout << "Ma benh nhan: " << result.id << endl;
-        cout << "Ho ten: " << result.name << endl;
-        cout << "Tuoi: " << result.age << endl;
-        cout << "Khoa dieu tri: " << result.department << endl;
-        cout << "Muc do benh: " << result.severityLevel << endl;
-        cout << "Bao hiem: " << (result.hasInsurance ? "Co" : "Khong") << endl;
-        cout << "Vien phi: " << result.treatmentFee << endl;
-    }
-
-    // Kiem tra benh nhan co ton tai theo id khong
-    bool contains(const string& id) const {
-        Patient temp;
-        return findById(id, temp);
     }
 
     // Xoa benh nhan theo ma id
@@ -128,6 +105,11 @@ public:
         return count;
     }
 
+    // Kiem tra bang bam co rong khong
+    bool empty() const {
+        return count == 0;
+    }
+
     // Lay tat ca benh nhan trong bang bam dua vao mang arr
     int getAllPatients(Patient arr[]) const {
         int index = 0;
@@ -137,6 +119,15 @@ public:
         }
 
         return index;
+    }
+
+    // Xoa toan bo bang bam
+    void clear() {
+        for (int i = 0; i < 10; i++) {
+            table[i].clear();
+        }
+
+        count = 0;
     }
 };
 

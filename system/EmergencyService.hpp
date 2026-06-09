@@ -41,6 +41,7 @@ public:
     void addEmergencyPatient(const Patient& patient) {
         if (patient.severityLevel >= 3) {
             emergencyQueue.insert(EmergencyPatient(patient));
+
             cout << "\nBenh nhan muc do " << patient.severityLevel
                  << " da duoc dua vao hang doi uu tien.\n";
         }
