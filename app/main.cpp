@@ -1,33 +1,25 @@
 #include <iostream>
 #include <windows.h>
-#include <cstdlib>
 #include "menus/menu.hpp"
-#include "../models/Models.hpp"
+#include "menus/HospitalManagement.hpp"
+#include "menus/EmergencyMenu.hpp"
+#include "menus/VisitedPatientMenu.hpp"
+
 #include "../system/HospitalSystem.hpp"
 #include "../system/FileService.hpp"
 
 using namespace std;
 
-int main()
+void showMainMenu(HospitalSystem &hospital)
 {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-    PatientService patientService;
+    int choice;
 
-    HospitalSystem hospital;
-
-    // Doc file khi khoi dong
-    FileService::loadPatientsFromFile(
-        "patients.txt",
-        patientService
-    );
-
-    int c;
-
-    do{
+    do
+    {
         clearScreen();
+
         cout << "┌───────────────────────────────────────┐\n";
-        cout << "│            BENH VIEN POKER            │\n";
+        cout << "│             BENH VIEN POKER           │\n";
         cout << "├───────────────────────────────────────┤\n";
         cout << "│ 1. Quan li benh nhan                  │\n";
         cout << "│ 2. Dang ky va kham thuong             │\n";
@@ -35,32 +27,57 @@ int main()
         cout << "│ 0. Thoat                              │\n";
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
-        cin >> c;
-        clearScreen();
 
-        switch (c)
+        cin >> choice;
+
+        switch (choice)
         {
         case 1:
+            clearScreen();
             showHospitalMenu(hospital);
             break;
+
         case 2:
+            clearScreen();
             showVisitedPatientMenu(hospital);
             break;
+
         case 3:
+            clearScreen();
             showEmergencyMenu(hospital);
             break;
-        case 0:
-            cout << "Dang thoat..." << endl;
-            break;
-        default:
-            cout << "Lua chon khong hop le! Vui long thu lai." << endl;
-        }
-    } while (c != 0);
 
-    // Luu file khi thoat// Luu file khi thoat
+        case 0:
+            clearScreen();
+            cout << "Cam on ban da su dung chuong trinh.\n";
+            break;
+
+        default:
+            clearScreen();
+            cout << "Lua chon khong hop le.\n";
+            pauseScreen();
+            break;
+        }
+
+    } while (choice != 0);
+}
+
+int main()
+{
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    HospitalSystem hospital;
+
+    FileService::loadPatientsFromFile(
+        "patients.txt",
+        hospital.getPatientService()
+    );
+
+    showMainMenu(hospital);
+
     FileService::savePatientsToFile(
         "patients.txt",
-        patientService
+        hospital.getPatientService()
     );
 
     return 0;
