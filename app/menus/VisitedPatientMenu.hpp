@@ -2,6 +2,7 @@
 #define VISITEDPATIENTMENU_HPP
 
 #include <iostream>
+#include "menu.hpp"
 #include "../../system/HospitalSystem.hpp"
 
 using namespace std;
@@ -23,7 +24,9 @@ void showVisitedPatientMenu(HospitalSystem &hospital)
         cout << "│ 0. Quay lai menu chinh                │\n";
         cout << "└───────────────────────────────────────┘\n";
         cout << "Nhap lua chon: ";
+
         cin >> choice;
+        clearScreen();
 
         switch (choice)
         {

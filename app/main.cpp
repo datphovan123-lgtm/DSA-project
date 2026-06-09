@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <cstdlib>
 #include "menus/menu.hpp"
 #include "../models/Models.hpp"
 #include "../system/HospitalSystem.hpp"
@@ -24,6 +25,7 @@ int main()
     int c;
 
     do{
+        clearScreen();
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│            BENH VIEN POKER            │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -34,7 +36,7 @@ int main()
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
         cin >> c;
-        cin.ignore();
+        clearScreen();
 
         switch (c)
         {

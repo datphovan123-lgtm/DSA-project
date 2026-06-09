@@ -2,17 +2,10 @@
 #define MENU_HPP
 
 #include <iostream>
-#include <cstdlib>
+#include "menu.hpp"
 #include "../../system/HospitalSystem.hpp"
 using namespace std;
 
-// Tam dung, doi nguoi dung nhan Enter
-void pauseScreen()
-{
-    cout << "\nPress Enter to continue...";
-    cin.ignore();
-    cin.get();
-}
 
 // In menu chinh
 void showHospitalMenu(HospitalSystem &hospital)
@@ -33,9 +26,12 @@ void showHospitalMenu(HospitalSystem &hospital)
 
         cin >> choice;
 
+        clearScreen();
+
         switch (choice)
         {
         case 1:
+            cin.ignore();
             hospital.addPatient();
             break;
 

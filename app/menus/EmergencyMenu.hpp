@@ -2,9 +2,11 @@
 #define EMERGENCYMENU_HPP
 
 #include <iostream>
+#include "menu.hpp"
 #include "../../system/HospitalSystem.hpp"
 
 using namespace std;
+
 
 // Menu quan ly cap cuu
 void showEmergencyMenu(HospitalSystem &hospital)
@@ -23,6 +25,8 @@ void showEmergencyMenu(HospitalSystem &hospital)
         cout << "└───────────────────────────────────────┘\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
+
+        clearScreen();
 
         switch (choice)
         {
