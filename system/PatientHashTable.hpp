@@ -9,18 +9,22 @@
 
 using namespace std;
 
-struct PatientHashTable {
+struct PatientHashTable
+{
 private:
     AVL<Patient> table[10];
     int count;
 
     // Bam ma benh nhan dua vao chu so cuoi cung cua id
-    int hashFunction(const string& id) const {
-        if (id.empty()) return 0;
+    int hashFunction(const string &id) const
+    {
+        if (id.empty())
+            return 0;
 
         char last = id[id.length() - 1];
 
-        if (last >= '0' && last <= '9') {
+        if (last >= '0' && last <= '9')
+        {
             return last - '0';
         }
 
@@ -28,15 +32,19 @@ private:
     }
 
     // Tim benh nhan theo id trong mot cay AVL
-    bool findInAVL(AVLNode<Patient>* node, const string& id, Patient& result) const {
-        if (node == nullptr) return false;
+    bool findInAVL(AVLNode<Patient> *node, const string &id, Patient &result) const
+    {
+        if (node == nullptr)
+            return false;
 
-        if (node->data.id == id) {
+        if (node->data.id == id)
+        {
             result = node->data;
             return true;
         }
 
-        if (findInAVL(node->left, id, result)) {
+        if (findInAVL(node->left, id, result))
+        {
             return true;
         }
 
@@ -44,8 +52,10 @@ private:
     }
 
     // Thu thap toan bo benh nhan trong mot cay AVL vao mang
-    void collectAVL(AVLNode<Patient>* node, Patient arr[], int& index) const {
-        if (node == nullptr) return;
+    void collectAVL(AVLNode<Patient> *node, Patient arr[], int &index) const
+    {
+        if (node == nullptr)
+            return;
 
         collectAVL(node->left, arr, index);
         arr[index++] = node->data;
@@ -54,17 +64,20 @@ private:
 
 public:
     // Khoi tao bang bam rong
-    PatientHashTable() {
+    PatientHashTable()
+    {
         count = 0;
     }
 
     // Them benh nhan vao bang bam
-    bool insert(const Patient& patient) {
+    bool insert(const Patient &patient)
+    {
         int index = hashFunction(patient.id);
 
         Patient temp;
 
-        if (findInAVL(table[index].root, patient.id, temp)) {
+        if (findInAVL(table[index].root, patient.id, temp))
+        {
             cout << "Ma benh nhan da ton tai!\n";
             return false;
         }
@@ -76,23 +89,47 @@ public:
     }
 
     // Tim benh nhan theo ma id, neu thay thi gan vao result
-    bool findById(const string& id, Patient& result) const {
+    bool findById(const string &id, Patient &result) const
+    {
         int index = hashFunction(id);
 
         return findInAVL(table[index].root, id, result);
     }
 
-    // Xoa benh nhan theo ma id
-    bool removeById(const string& id) {
-        Patient result;
+    // Tra ve so luong benh nhan trong bang bam
+    int size() const
+    {
+        return count;
+    }
 
-        if (!findById(id, result)) {
-            return false;
+    // Kiem tra bang bam co rong khong
+    bool empty() const
+    {
+        return count == 0;
+    }
+
+    // Lay tat ca benh nhan trong bang bam dua vao mang arr
+    int getAllPatients(Patient arr[]) const
+    {
+        int index = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            collectAVL(table[i].root, arr, index);
         }
+
+        return index;
+    }
+    // Xoa benh nhan theo ma id
+    bool removeById(const string &id)
+    {
+        Patient temp;
+        temp.id = id;
 
         int index = hashFunction(id);
 
-        if (table[index].remove(result)) {
+        if (table[index].remove(temp))
+        {
             count--;
             return true;
         }
@@ -100,45 +137,11 @@ public:
         return false;
     }
 
-    // Tra ve so luong benh nhan trong bang bam
-    int size() const {
-        return count;
-    }
-
-    // Kiem tra bang bam co rong khong
-    bool empty() const {
-        return count == 0;
-    }
-
-    // Lay tat ca benh nhan trong bang bam dua vao mang arr
-    int getAllPatients(Patient arr[]) const {
-        int index = 0;
-
-        for (int i = 0; i < 10; i++) {
-            collectAVL(table[i].root, arr, index);
-        }
-
-        return index;
-    }
-
-    bool removeById(const string& id)
-{
-    Patient temp;
-    temp.id = id;
-
-    int index = hashFunction(id);
-
-    if (table[index].remove(temp))
-    {
-        count--;
-        return true;
-    }
-
-    return false;
-}
     // Xoa toan bo bang bam
-    void clear() {
-        for (int i = 0; i < 10; i++) {
+    void clear()
+    {
+        for (int i = 0; i < 10; i++)
+        {
             table[i].clear();
         }
 
