@@ -14,25 +14,10 @@ void showMainMenu(HospitalSystem &hospital)
 {
     int choice;
 
-<<<<<<< HEAD
-    HospitalSystem hospital;
-
-    // Doc file khi khoi dong
-    FileService::loadPatientsFromFile(
-        "patients.txt",
-        patientService
-    );
-
-    int c;
-
-    do{
-        
-=======
     do
     {
         clearScreen();
 
->>>>>>> b4e0a3219afcd99018d936e8ab7ac8c85316d715
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│             BENH VIEN POKER           │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -42,13 +27,10 @@ void showMainMenu(HospitalSystem &hospital)
         cout << "│ 0. Thoat                              │\n";
         cout << "└───────────────────────────────────────┘\n";
         cout << "Chon thao tac: ";
-<<<<<<< HEAD
-        cin >> c;
+        cin >> choice;
         cin.ignore();
 
         system("cls");
-=======
->>>>>>> b4e0a3219afcd99018d936e8ab7ac8c85316d715
 
         cin >> choice;
 

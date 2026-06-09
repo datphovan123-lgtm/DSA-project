@@ -53,6 +53,7 @@ public:
         newPatient.id = generatePatientID();
 
         cout << "Ten benh nhan: ";
+        cin.ignore();
         getline(cin, newPatient.name);
 
         cout << "Tuoi: ";
