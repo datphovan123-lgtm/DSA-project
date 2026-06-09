@@ -7,13 +7,14 @@
 
 using namespace std;
 
-// Menu dang ky va kham thuong
 void showVisitedPatientMenu(HospitalSystem &hospital)
 {
     int choice;
 
     do
     {
+        clearScreen();
+
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│         DANG KY VA KHAM BENH          │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -32,26 +33,30 @@ void showVisitedPatientMenu(HospitalSystem &hospital)
         {
         case 1:
             hospital.registerNormalVisit();
+            pauseScreen();
             break;
 
         case 2:
             hospital.callNextNormalVisit();
+            pauseScreen();
             break;
 
         case 3:
             hospital.viewNextNormalVisit();
+            pauseScreen();
             break;
 
         case 4:
             hospital.displayNormalQueueSize();
+            pauseScreen();
             break;
 
         case 0:
-            cout << "Quay lai menu chinh...\n";
             break;
 
         default:
             cout << "Lua chon khong hop le.\n";
+            pauseScreen();
             break;
         }
         clearScreen();

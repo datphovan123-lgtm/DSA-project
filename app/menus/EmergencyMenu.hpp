@@ -7,14 +7,14 @@
 
 using namespace std;
 
-
-// Menu quan ly cap cuu
 void showEmergencyMenu(HospitalSystem &hospital)
 {
     int choice;
 
     do
     {
+        clearScreen();
+
         cout << "┌───────────────────────────────────────┐\n";
         cout << "│           QUAN LY CAP CUU             │\n";
         cout << "├───────────────────────────────────────┤\n";
@@ -24,30 +24,33 @@ void showEmergencyMenu(HospitalSystem &hospital)
         cout << "│ 0. Quay lai menu chinh                │\n";
         cout << "└───────────────────────────────────────┘\n";
         cout << "Nhap lua chon: ";
-        cin >> choice;
 
+        cin >> choice;
         clearScreen();
 
         switch (choice)
         {
         case 1:
             hospital.processEmergencyPatient();
+            pauseScreen();
             break;
 
         case 2:
             hospital.viewTopEmergencyPatient();
+            pauseScreen();
             break;
 
         case 3:
             hospital.displayEmergencyQueueSize();
+            pauseScreen();
             break;
 
         case 0:
-            cout << "Quay lai menu chinh...\n";
             break;
 
         default:
             cout << "Lua chon khong hop le.\n";
+            pauseScreen();
             break;
         }
         clearScreen();
