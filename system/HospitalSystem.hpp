@@ -15,6 +15,7 @@ private:
     PatientService patientService;
     VisitService visitService;
     EmergencyService emergencyService;
+
 public:
     // Dang ky kham
     void registerNormalVisit() {
@@ -26,7 +27,7 @@ public:
         visitService.callNextNormalVisit();
     }
 
-    // Xem benh nhan dau hang doi kham 
+    // Xem benh nhan dau hang doi kham
     void viewNextNormalVisit() const {
         visitService.viewNextNormalVisit();
     }
@@ -36,7 +37,12 @@ public:
         visitService.displayNormalQueueSize();
     }
 
-     // Xu ly benh nhan cap cuu co do uu tien cao nhat
+    // Them benh nhan moi vao he thong
+    void addPatient() {
+        patientService.addPatient();
+    }
+
+    // Xu ly benh nhan cap cuu co do uu tien cao nhat
     void processEmergencyPatient() {
         emergencyService.processEmergencyPatient();
     }
@@ -57,10 +63,11 @@ public:
     }
 
     // Tim benh nhan theo ma benh nhan
-    void findPatientByID() const {
+    void findPatientByID() {
         patientService.searchPatientById();
     }
 
+    // Xoa benh nhan theo ma benh nhan
     void deletePatient() {
         patientService.removePatient();
     }
@@ -68,6 +75,21 @@ public:
     // Hien thi danh sach benh nhan trong he thong
     void displayPatients() const {
         patientService.displayPatients();
+    }
+
+    // Tim benh nhan theo ma ID
+    void searchPatientById() const {
+        patientService.searchPatientById();
+    }
+
+    // Lay PatientService de FileService co the load/save file
+    PatientService& getPatientService() {
+        return patientService;
+    }
+
+    // Lay PatientService ban const de save file
+    const PatientService& getPatientService() const {
+        return patientService;
     }
 };
 

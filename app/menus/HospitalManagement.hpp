@@ -59,7 +59,7 @@ void showHospitalMenu(HospitalSystem &hospital)
             cout << "Lua chon khong hop le.\n";
             break;
         }
-    }
+    }while(choice != 0);
 }
 
 #endif

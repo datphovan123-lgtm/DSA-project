@@ -7,7 +7,6 @@
 #include "PatientHashTable.hpp"
 #include "EmergencyService.hpp"
 #include "../models/Models.hpp"
-#include "../lib/LinkedList.hpp"
 
 using namespace std;
 
@@ -46,11 +45,12 @@ public:
     }
 
     // Them benh nhan bang cach nhap tu ban phim
-    void addPatient()
-    {
+    void addPatient() {
         Patient newPatient;
 
         newPatient.id = generatePatientID();
+
+        cin.ignore();
 
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
@@ -89,8 +89,7 @@ public:
 
         patientTable.insert(newPatient);
 
-        if (newPatient.severityLevel >= 3)
-        {
+        if (newPatient.severityLevel >= 3) {
             emergencyQueue.addEmergencyPatient(newPatient);
         }
 
@@ -102,8 +101,7 @@ public:
     {
         patientTable.insert(patient);
 
-        if (patient.severityLevel >= 3)
-        {
+        if (patient.severityLevel >= 3) {
             emergencyQueue.addEmergencyPatient(patient);
         }
     }
@@ -140,9 +138,8 @@ public:
         delete[] patients;
     }
 
-    // Tim benh nhan theo ma ID va tra ve true neu tim thay
-    bool findPatientById(const string &id, Patient &result) const
-    {
+      // Tim benh nhan theo ma ID va tra ve true neu tim thay
+    bool findPatientById(const string& id, Patient& result) const {
         return patientTable.findById(id, result);
     }
 
