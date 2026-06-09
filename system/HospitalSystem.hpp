@@ -57,7 +57,13 @@ public:
     }
 
     // Tim benh nhan theo ma benh nhan
-    void findPatientByID() {
+    void findPatientByID() const {
+        patientService.searchPatientById();
+    }
+
+    void deletePatient() {
+        patientService.removePatient();
+    }
 
     // Hien thi danh sach benh nhan trong he thong
     void displayPatients() const {

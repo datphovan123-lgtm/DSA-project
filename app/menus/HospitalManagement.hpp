@@ -15,36 +15,40 @@ void pauseScreen()
 }
 
 // In menu chinh
-void showHospitalMenu(HospitalSystem& hospital)
+void showHospitalMenu(HospitalSystem &hospital)
 {
     int choice;
     do
     {
-        cout << "========== HOSPITAL MANAGEMENT ==========\n";
-        cout << "1. Them benh nhan\n";
-        cout << "2. Tim benh nhan\n";
-        cout << "3. Xoa benh nhan\n";
-        cout << "4. Hien thi tat ca benh nhan\n";
-        cout << "0. Thoat\n";
+        cout << "┌───────────────────────────────────────┐\n";
+        cout << "│      HOSPITAL MANAGEMENT SYSTEM       │\n";
+        cout << "├───────────────────────────────────────┤\n";
+        cout << "│ 1. Them benh nhan                     │\n";
+        cout << "│ 2. Tim benh nhan                      │\n";
+        cout << "│ 3. Xoa benh nhan                      │\n";
+        cout << "│ 4. Hien thi tat ca benh nhan          │\n";
+        cout << "│ 0. Thoat                              │\n";
+        cout << "└───────────────────────────────────────┘\n";
         cout << "Choose: ";
 
-        cin>>choice;
+        cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
             hospital.addPatient();
             break;
 
         case 2:
-            hospital.callNextNormalVisit();
+            hospital.findPatientByID();
             break;
 
         case 3:
-            hospital.viewNextNormalVisit();
+            hospital.deletePatient();
             break;
 
         case 4:
-            hospital.displayNormalQueueSize();
+            hospital.displayPatients();
             break;
 
         case 0:

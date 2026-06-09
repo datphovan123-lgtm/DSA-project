@@ -1,18 +1,19 @@
 #include <iostream>
-
-#include "menu.hpp"
-
-#include "../system/Systems.hpp"
+#include <windows.h>
+#include "menus/menu.hpp"
 #include "../models/Models.hpp"
+#include "../system/HospitalSystem.hpp"
+#include "../system/FileService.hpp"
 
 using namespace std;
 
 int main()
 {
-
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
     PatientService patientService;
 
-    PatientService patientService;
+    HospitalSystem hospital;
 
     // Doc file khi khoi dong
     FileService::loadPatientsFromFile(
@@ -20,36 +21,38 @@ int main()
         patientService
     );
 
-    int choice;
-    do
-    {
-        system("cls");
-        showMenu();
-        cin >> choice;
-        cin.ignore();
+    int c;
 
-        system("cls");
+    do{
+        cout << "┌───────────────────────────────────────┐\n";
+        cout << "│            BENH VIEN POKER            │\n";
+        cout << "├───────────────────────────────────────┤\n";
+        cout << "│ 1. Quan li benh nhan                  │\n";
+        cout << "│ 2. Dang ky va kham thuong             │\n";
+        cout << "│ 3. Quan li benh nhan cap cuu          │\n";
+        cout << "│ 0. Thoat                              │\n";
+        cout << "└───────────────────────────────────────┘\n";
+        cout << "Chon thao tac: ";
+        cin >> c;
 
-        switch (choice)
+        switch (c)
         {
         case 1:
-            cout << "=== ADD PATIENT ===\n";
-            patientService.addPatient();
-            pauseScreen();
+            showHospitalMenu(hospital);
             break;
         case 2:
-            cout << "=== SHOW ALL PATIENTS ===\n";
-            patientService.displayPatients();
-            pauseScreen();
+            showVisitedPatientMenu(hospital);
+            break;
+        case 3:
+            showEmergencyMenu(hospital);
             break;
         case 0:
-            cout << "Thoat chuong trinh...\n";
+            cout << "Dang thoat..." << endl;
             break;
         default:
-            cout << "Lua chon khong hop le!\n";
-            pauseScreen();
+            cout << "Lua chon khong hop le! Vui long thu lai." << endl;
         }
-    } while (choice != 0);
+    } while (c != 0);
 
     // Luu file khi thoat// Luu file khi thoat
     FileService::savePatientsToFile(

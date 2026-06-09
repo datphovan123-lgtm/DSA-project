@@ -7,20 +7,26 @@
 using namespace std;
 
 // Menu dang ky va kham thuong
-void normalVisitMenu(HospitalSystem& hospital) {
+void showVisitedPatientMenu(HospitalSystem &hospital)
+{
     int choice;
 
-    do {
-        cout << "\n========== DANG KY VA KHAM ==========\n";
-        cout << "1. Dang ky benh nhan kham\n";
-        cout << "2. Goi benh nhan kham tiep theo\n";
-        cout << "3. Xem benh nhan dau hang doi\n";
-        cout << "4. Xem so luong benh nhan dang cho\n";
-        cout << "0. Quay lai menu chinh\n";
+    do
+    {
+        cout << "┌───────────────────────────────────────┐\n";
+        cout << "│         DANG KY VA KHAM BENH          │\n";
+        cout << "├───────────────────────────────────────┤\n";
+        cout << "│ 1. Dang ky benh nhan kham             │\n";
+        cout << "│ 2. Goi benh nhan kham tiep theo       │\n";
+        cout << "│ 3. Xem benh nhan dau hang doi         │\n";
+        cout << "│ 4. Xem so luong benh nhan dang cho    │\n";
+        cout << "│ 0. Quay lai menu chinh                │\n";
+        cout << "└───────────────────────────────────────┘\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
             hospital.registerNormalVisit();
             break;

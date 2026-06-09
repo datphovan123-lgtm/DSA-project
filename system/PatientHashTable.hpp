@@ -138,6 +138,22 @@ public:
 
         return index;
     }
+
+    bool removeById(const string& id)
+{
+    Patient temp;
+    temp.id = id;
+
+    int index = hashFunction(id);
+
+    if (table[index].remove(temp))
+    {
+        count--;
+        return true;
+    }
+
+    return false;
+}
 };
 
 #endif

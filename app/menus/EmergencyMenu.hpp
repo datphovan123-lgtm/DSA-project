@@ -7,19 +7,25 @@
 using namespace std;
 
 // Menu quan ly cap cuu
-void emergencyMenu(HospitalSystem& hospital) {
+void showEmergencyMenu(HospitalSystem &hospital)
+{
     int choice;
 
-    do {
-        cout << "\n========== QUAN LY CAP CUU ==========\n";
-        cout << "1. Xu ly benh nhan cap cuu uu tien cao nhat\n";
-        cout << "2. Xem benh nhan cap cuu uu tien cao nhat\n";
-        cout << "3. Xem so luong benh nhan cap cuu dang cho\n";
-        cout << "0. Quay lai menu chinh\n";
+    do
+    {
+        cout << "┌───────────────────────────────────────┐\n";
+        cout << "│           QUAN LY CAP CUU             │\n";
+        cout << "├───────────────────────────────────────┤\n";
+        cout << "│ 1. Xu ly benh nhan uu tien cao nhat   │\n";
+        cout << "│ 2. Xem benh nhan uu tien cao nhat     │\n";
+        cout << "│ 3. Xem so luong benh nhan dang cho    │\n";
+        cout << "│ 0. Quay lai menu chinh                │\n";
+        cout << "└───────────────────────────────────────┘\n";
         cout << "Nhap lua chon: ";
         cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
             hospital.processEmergencyPatient();
             break;
@@ -31,7 +37,7 @@ void emergencyMenu(HospitalSystem& hospital) {
         case 3:
             hospital.displayEmergencyQueueSize();
             break;
-            
+
         case 0:
             cout << "Quay lai menu chinh...\n";
             break;
