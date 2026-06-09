@@ -125,6 +125,28 @@ public:
         delete[] patients;
     }
 
+      // Tim benh nhan theo ma ID va tra ve true neu tim thay
+    bool findPatientById(const string& id, Patient& result) const {
+        return patientTable.findById(id, result);
+    }
+
+    // Tim benh nhan theo ma ID va hien thi thong tin
+    void searchPatientById() const {
+        string id;
+
+        cout << "\nNhap ma benh nhan can tim: ";
+        cin >> id;
+
+        Patient result;
+
+        if (patientTable.findById(id, result)) {
+            cout << "\n========== THONG TIN BENH NHAN ==========\n";
+            result.display();
+        } else {
+            cout << "\nKhong tim thay benh nhan co ma: " << id << endl;
+        }
+    }
+
     // Tra ve so luong benh nhan
     int size() const {
         return patientTable.size();
