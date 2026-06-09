@@ -50,6 +50,14 @@ public:
     void displayEmergencyQueueSize() const {
         emergencyService.displayEmergencyQueueSize();
     }
+    
+    // Them benh nhan moi
+    void addPatient() {
+        patientService.addPatient();
+    }
+
+    // Tim benh nhan theo ma benh nhan
+    void findPatientByID() {
 
     // Hien thi danh sach benh nhan trong he thong
     void displayPatients() const {
