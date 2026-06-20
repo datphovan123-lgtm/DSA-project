@@ -9,6 +9,7 @@
 #include "EmergencyService.hpp"
 #include "../models/Models.hpp"
 #include "../lib/LinkedList.hpp"
+#include "../lib/Algorithms.hpp"
 
 using namespace std;
 
@@ -55,7 +56,7 @@ public:
 
         cout << "Ma benh nhan: " << newPatient.id << endl;
 
-        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        // cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.ignore();
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
@@ -119,7 +120,7 @@ public:
         return patientTable.getAllPatients(arr);
     }
 
-    // Hien thi toan bo benh nhan
+    // Hien thi toan bo benh nhan theo lua chon sap xep
     void displayPatients() const
     {
         int n = patientTable.size();
@@ -134,21 +135,77 @@ public:
 
         int count = patientTable.getAllPatients(patients);
 
-        cout << "\n========== DANH SACH BENH NHAN ==========\n";
+        int choice;
 
+        cout << "\n========== SAP XEP DANH SACH BENH NHAN ==========\n";
+        cout << "1. Theo ma benh nhan\n";
+        cout << "2. Theo ten benh nhan\n";
+        cout << "3. Theo muc do benh\n";
+        cout << "Chon: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1: // Sap xep theo ma benh nhan
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (patients[i].id > patients[j].id)
+                    {
+                        Patient temp = patients[i];
+                        patients[i] = patients[j];
+                        patients[j] = temp;
+                    }
+                }
+            }
+            break;
+
+        case 2: // Sap xep theo ten
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (patients[i].name > patients[j].name)
+                    {
+                        Patient temp = patients[i];
+                        patients[i] = patients[j];
+                        patients[j] = temp;
+                    }
+                }
+            }
+            break;
+
+        case 3: // Sap xep theo muc do benh (1 -> 4)
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (patients[i].severityLevel > patients[j].severityLevel)
+                    {
+                        Patient temp = patients[i];
+                        patients[i] = patients[j];
+                        patients[j] = temp;
+                    }
+                }
+            }
+            break;
+
+        default:
+            cout << "\nLua chon khong hop le!\n";
+            delete[] patients;
+            return;
+        }
+
+        cout << "\n========== DANH SACH BENH NHAN ==========\n";
         for (int i = 0; i < count; i++)
         {
             cout << "\nBenh nhan thu " << i + 1 << endl;
             patients[i].display();
+            cout << "───────────────────────────────────────────────────────\n";
         }
 
         delete[] patients;
-    }
-
-    // Tim benh nhan theo ma ID va tra ve true neu tim thay
-    bool findPatientById(const string &id, Patient &result) const
-    {
-        return patientTable.findById(id, result);
     }
 
     // Tim benh nhan theo ma ID va hien thi thong tin

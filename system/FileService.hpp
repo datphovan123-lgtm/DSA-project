@@ -15,17 +15,25 @@ struct FileService {
     static void loadPatientsFromFile(
         const string& filename,
         PatientService& patientService
-    ) {
+    ) {\
         ifstream fin(filename);
 
         if (!fin.is_open()) {
-            cout << "Khong tim thay file du lieu!\n";
+            patientService.setNextPatientID(25120201);
+            cout << "Khong tim thay file du lieu. Bat dau voi du lieu moi.\n";
             return;
         }
 
-        long long nextID;
+        long long nextID = 25120201;
 
-        fin >> nextID;
+        // Neu file rong hoac dong dau khong hop le
+        if (!(fin >> nextID)) {
+            patientService.setNextPatientID(25120201);
+            fin.close();
+            cout << "File du lieu rong. Bat dau voi du lieu moi.\n";
+            return;
+        }
+
         fin.ignore();
 
         patientService.setNextPatientID(nextID);
