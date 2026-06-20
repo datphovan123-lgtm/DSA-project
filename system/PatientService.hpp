@@ -202,7 +202,6 @@ public:
         {
             cout << "\nBenh nhan thu " << i + 1 << endl;
             patients[i].display();
-            cout << "───────────────────────────────────────────────────────\n";
         }
 
         delete[] patients;

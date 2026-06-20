@@ -12,7 +12,7 @@ struct Patient {
     string department;
     int severityLevel;
     bool hasInsurance;
-    double treatmentFee;
+    long long treatmentFee;
 
     Patient() {
         id = "";
@@ -31,7 +31,7 @@ struct Patient {
         string department,
         int severityLevel,
         bool hasInsurance,
-        double treatmentFee
+        long long treatmentFee
     ) {
         this->id = id;
         this->name = name;
