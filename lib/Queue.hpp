@@ -38,7 +38,7 @@ struct Queue {
     // Xoa phan tu o dau hang
     void dequeue() {
         if (empty()) {
-            throw out_of_range("Hang doi dang rong, khong the xoa!"); // Queue rong -> khong the dequeue
+            throw out_of_range("Hang doi dang rong, khong the xoa!");
         }
         T frontValue = data[frontIndex];
         // Tang index toi phan tu tiep theo, neu den cuoi mang thi quay lai dau mang
@@ -49,7 +49,7 @@ struct Queue {
     // Lay gia tri o dau hang
     T front() const {
         if (empty()) {
-            throw out_of_range("Queue dang rong!"); // Queue rong -> khong the lay gia tri o dau hang
+            throw out_of_range("Queue dang rong!");
         }
         return data[frontIndex];
     }

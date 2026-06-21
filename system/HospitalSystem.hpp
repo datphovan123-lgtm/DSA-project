@@ -15,7 +15,6 @@ struct HospitalSystem
 private:
     PatientService patientService;
     VisitService visitService;
-    EmergencyService emergencyService;
 
 public:
     // Dang ky kham
@@ -60,27 +59,6 @@ public:
         patientService.removePatient();
     }
 
-    // Xu ly benh nhan cap cuu uu tien cao nhat
-
-    void processEmergencyPatient()
-    {
-        emergencyService.processEmergencyPatient();
-    }
-
-    // Xem benh nhan cap cuu uu tien cao nhat
-
-    void viewTopEmergencyPatient() const
-    {
-        emergencyService.viewTopEmergencyPatient();
-    }
-
-    // Xem so luong benh nhan cap cuu dang cho
-
-    void displayEmergencyQueueSize() const
-    {
-        emergencyService.displayEmergencyQueueSize();
-    }
-
     // Hien thi danh sach benh nhan
     void displayPatients() const
     {
@@ -96,6 +74,24 @@ public:
     const PatientService &getPatientService() const
     {
         return patientService;
+    }
+
+    // Xu ly benh nhan cap cuu uu tien cao nhat
+    void processEmergencyPatient()
+    {
+        patientService.processEmergencyPatient();
+    }
+
+    // Xem benh nhan cap cuu uu tien cao nhat
+    void viewTopEmergencyPatient() const
+    {
+        patientService.viewTopEmergencyPatient();
+    }
+
+    // Xem so luong benh nhan cap cuu dang cho
+    void displayEmergencyQueueSize() const
+    {
+        patientService.displayEmergencyQueueSize();
     }
 };
 

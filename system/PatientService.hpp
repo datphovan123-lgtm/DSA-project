@@ -55,7 +55,7 @@ public:
 
         cout << "Ma benh nhan: " << newPatient.id << endl;
 
-        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        // cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.ignore();
         cout << "Ten benh nhan: ";
         getline(cin, newPatient.name);
@@ -176,6 +176,7 @@ public:
     {
         string patientID;
 
+        cin.ignore();
         cout << "Nhap ma benh nhan can xoa: ";
         getline(cin, patientID);
 
@@ -193,6 +194,24 @@ public:
     int size() const
     {
         return patientTable.size();
+    }
+
+    // Xu ly benh nhan cap cuu uu tien cao nhat
+    void processEmergencyPatient()
+    {
+        emergencyQueue.processEmergencyPatient();
+    }
+
+    // Xem benh nhan cap cuu uu tien cao nhat
+    void viewTopEmergencyPatient() const
+    {
+        emergencyQueue.viewTopEmergencyPatient();
+    }
+
+    // Xem so luong benh nhan cap cuu dang cho
+    void displayEmergencyQueueSize() const
+    {
+        emergencyQueue.displayEmergencyQueueSize();
     }
 };
 
