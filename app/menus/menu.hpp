@@ -21,7 +21,7 @@ void clearScreen()
 void pauseScreen()
 {
     cout << "\nNhan Enter de tiep tuc...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore((numeric_limits<streamsize>::max)(), '\n');
     cin.get();
 }
 
