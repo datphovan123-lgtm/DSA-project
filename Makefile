@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17
 
-hospital:
+all:
 	$(CXX) $(CXXFLAGS) app/main.cpp -o hospital.exe
 
 run:
